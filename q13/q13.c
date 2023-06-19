@@ -16,6 +16,16 @@ int main(int argc, char * argv[])
 {
     char *filepath = "numbers.txt";
 
+    if(argc == 2)
+    {
+        filepath = argv[1];
+    }
+    if(argc > 2)
+    {
+        printf("Too much arguments.\n");
+        return -1;
+    }
+
     FILE *numberf = fopen(filepath, "r");
     if(numberf == NULL)
     {
@@ -34,10 +44,7 @@ int main(int argc, char * argv[])
         sum /= 10;
 
 
-    printf("the sum found is %ld\n", sum);
-
-    printf("The answer you got is %s\n", sum == ANSWER ? "correct" : "incorrect");
-    fclose(numberf);
+    printf("%ld\n", sum);
 }
 
 int freadline(FILE* file, char buff[], int digits)
