@@ -6,4 +6,4 @@ all: $(CFILES)
 	gcc -o $(DIR) $(CFILES)
 
 clean:
-	rm $(DIR)
+	@rm -vrf $(DIR)
