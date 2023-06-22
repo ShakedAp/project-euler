@@ -1,34 +1,30 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
 #include <math.h>
 
-#define MAXNUM 10
+#define MAXNUM 20
 
-int main()
-{
-    int amount[MAXNUM-1]; // val = i+2
-    for(int i = 0; i < MAXNUM -1; amount[i++] = 1);
+// Function to calculate the greatest common divisor (GCD) of two numbers
+long int gcd(long int a, long int b) {
+    if (b != 0)
+        return gcd(b, a % b);
+    else
+        return a;
+}
 
-    for(int i = MAXNUM-2, val = MAXNUM; i >= 0; val = (--i) + 2)
-    {
-        for(int j = 0, jval = 2, root = sqrt(i) + 1; j < root; jval = (++j) + 2)
-        {
-            if(val % jval == 0)
-            {
-                amount[j] += 1;
-                amount[(int) (val/jval) - 2] += 1;
-                amount[i] -= 1;
-                break;
-            }
-        }
-        if(val == 7)
-            break;
-    }
+// Function to calculate the least common multiple (LCM) of two numbers
+long int lcm(long int a, long int b) {
+    return (a * b) / gcd(a, b);  // A formula from math. 
+}
 
-    for(int i = 0; i < MAXNUM-1; i++)
-    {
-        printf("%d %d\n", i+2, amount[i]);
-    }
+// Function to calculate the LCM of a set of numbers
+// The LCM of a set of number is LCM of a number and the result of the previous pair.
+int main(void) {
+    long int result = 1;
+    for (int i = 2; i <= MAXNUM; i++)
+        result = lcm(result, i);
+    
+    printf("%ld\n", result);
 
     return 0;
 }
