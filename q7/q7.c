@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
+
 #define PRIMEAMOUNT 10001
+
 
 bool isprime(int);
 
@@ -18,6 +20,8 @@ int main()
     return 0;
 }
 
+
+// simple primality check test
 bool isprime(int x) {
     for (int d = 2; d * d <= x; d++) {
         if (x % d == 0)
