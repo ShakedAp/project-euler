@@ -27,10 +27,10 @@ int main(void)
             else
                 numbers[i] = c - '0';
             current_product *= numbers[i];
-            if (current_product > product)
-                product = current_product;
         }
-        
+
+        if (current_product > product)
+            product = current_product;
     }
 
     printf("%lld\n", product);
