@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
     int row = 0, col = 0;
     int num = 0;
 
+    // Importing grid from file
     while((c = getc(gridf)) != EOF)
     {
         if(c == ' ' || c == '\n')
@@ -44,16 +45,38 @@ int main(int argc, char *argv[])
             num = num*10 + (c - '0'); 
     }
 
-    for (int i = 0; i < GRIDSIZE; i++)
+    int max_product = 0; 
+    int product = 0;
+
+    // finding the max product
+    for (int i = 0; i < GRIDSIZE-3; i++)
     {
         for(int j = 0; j < GRIDSIZE; j++)
         {
-            printf("%02d ", gridarr[i][j]);
+            if (j+3 < GRIDSIZE)
+            {
+                product = gridarr[i][j];
+                product *= gridarr[i+1][j+1];
+                product *= gridarr[i+2][j+2];
+                product *= gridarr[i+3][j+3];
+
+                if(product > max_product)
+                    max_product = product;
+            }
+            if (j-3 >= 0)
+            {
+                product = gridarr[i][j];
+                product *= gridarr[i+1][j-1];
+                product *= gridarr[i+2][j-2];
+                product *= gridarr[i+3][j-3];
+
+                if(product > max_product)
+                    max_product = product;
+            }  
         }
-        printf("\n");
     }
 
-
+    printf("%d\n", max_product);
 
     fclose(gridf);
     return 0;
